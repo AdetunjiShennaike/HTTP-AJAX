@@ -18,18 +18,18 @@ class App extends Component {
     axios.get('http://localhost:5000/friends')
     .then(res => {
       console.log(res)
+      this.setState({
+        friends: res.data
+      })
     })
     .catch(err => {
       console.log(err)
-    })
-
-    this.setState({
-
     })
   }
 
 
   render() {
+    console.log(this.state.friends)
       return (
         <div className="App">
           <header className="App-header">
@@ -41,13 +41,13 @@ class App extends Component {
           ? 
             <Loader className='loading'
               type="Triangle"
-              color="#00BFFF"
+              color="green"
               height="100"	
               width="100"
             />
           :
             this.state.friends.map( event => 
-            <Friends key={event.id} friends={this.state.friends}/>
+            <Friends key={event.id} friends={event}/>
             )
           }
         </div>
