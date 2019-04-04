@@ -1,38 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 
-//styling the friend card for the list
-let Card = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 400px;
-  border: 1.5px solid blue;
-  padding: 5px
-  margin: 10px;
-`
-
-let Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  text-align: right;
-  font-size: 1.25rem;
-`
+import Link from 'react-router-dom'
+import FriendCard from './FriendCard'
 
 
-let Friends = (props) => {
-  return (
-  
-    <Card className='list'>
-      <h2>{props.friends.id}:</h2>
-      <Info>
-        <p>{props.friends.name} : Name</p>
-        <p>{props.friends.age} : Age</p>
-        <p>{props.friends.email} : Email</p>
-      </Info>
-    </Card>
+let FriendsList = (props) => {
+  return ( 
+    props.friends.map( event => 
+      <FriendDetails key={event.id} friends={event}/>
+    )
   )  
 }
 
+function FriendDetails({ friends }) {
+  return (
+    <Link to={`/friend/${friends.id}`}>
+      <FriendCard friends={friends} />
+    </Link>
+  );
+}
 
-export default Friends
+
+
+export default FriendsList
