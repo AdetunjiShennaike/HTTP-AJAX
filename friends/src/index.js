@@ -3,8 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+import { BrowserRouter as Router, withRouter } from 'react-router-dom'
 
+let AppWithRouter = withRouter(App)
 
-
-ReactDOM.render(<App />, document.getElementById('root'));
+//change the default to a function with reactDOM
+// ReactDOM.render(<App />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
+ReactDOM.render(
+  <Router>
+    <AppWithRouter />
+  </Router>,
+  rootElement
+);
 
